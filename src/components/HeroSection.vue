@@ -14,124 +14,82 @@ interface Props {
 
 defineProps<Props>();
 
-const currentYear = new Date().getFullYear();
+function socialIcon(label: string) {
+  const icons: Record<string, string> = {
+    github:
+      "https://api.iconify.design/simple-icons/github.svg?color=%23181717",
+    linkedin:
+      "https://api.iconify.design/simple-icons/linkedin.svg?color=%230A66C2",
+    dribbble:
+      "https://api.iconify.design/simple-icons/dribbble.svg?color=%23EA4C89",
+  };
 
-const decorativeMarks = [
-  "left-[8%] top-[19%]",
-  "right-[10%] top-[14%]",
-  "left-[16%] bottom-[17%]",
-  "right-[21%] bottom-[10%]",
-  "right-[4%] top-1/2",
-];
+  return (
+    icons[label.toLowerCase()] ??
+    "https://api.iconify.design/simple-icons/link.svg?color=%23525252"
+  );
+}
 </script>
 
 <template>
   <section
     id="home"
-    class="relative isolate min-h-screen overflow-hidden bg-neutral-50 px-5 py-8 text-neutral-950 sm:px-8 lg:px-12"
+    class="relative isolate min-h-screen overflow-hidden bg-white text-neutral-950"
   >
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute inset-0 -z-10 opacity-60 [background-image:linear-gradient(to_right,rgba(17,24,39,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,24,39,0.045)_1px,transparent_1px)] [background-size:48px_48px]"
-    ></div>
-
-    <span
-      v-for="mark in decorativeMarks"
-      :key="mark"
-      aria-hidden="true"
-      :class="[
-        'absolute z-0 select-none text-xl font-light text-neutral-300',
-        mark,
-      ]"
-      >+</span
+    <article
+      class="grid min-h-screen overflow-hidden md:grid-cols-[1.1fr_0.9fr]"
     >
-
-    <div
-      class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl flex-col justify-center"
-    >
-      <p
-        class="mb-5 text-[10px] font-medium tracking-[0.32em] text-neutral-500 sm:text-xs"
+      <div
+        class="order-2 flex min-h-[50vh] flex-col justify-center p-8 sm:p-12 lg:p-20 md:order-1 md:min-h-screen"
       >
-        WEB DESIGN / UI / UX
-        <span class="ml-2 text-neutral-400">{{ currentYear }}</span>
-      </p>
-
-      <div class="relative">
-        <div
-          aria-hidden="true"
-          class="absolute left-1/2 top-1/2 -z-10 aspect-square w-[min(78vw,34rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-neutral-200 via-neutral-100 to-white blur-2xl"
-        ></div>
-
-        <article
-          class="relative grid overflow-hidden rounded-3xl border border-neutral-900/15 bg-white shadow-[0_20px_70px_rgba(23,23,23,0.08)] md:grid-cols-[1.1fr_0.9fr]"
-        >
-          <div
-            class="order-2 flex min-h-[38rem] flex-col p-6 sm:p-9 lg:p-12 md:order-1"
+        <div class="max-w-xl">
+          <p
+            class="hero-copy hero-delay-1 mb-5 text-xs font-semibold uppercase tracking-[0.26em] text-neutral-400"
           >
-            <div class="my-auto max-w-xl py-16 md:py-20">
-              <p
-                class="mb-5 text-xs font-semibold uppercase tracking-[0.26em] text-neutral-400"
-              >
-                {{ role }}
-              </p>
-              <h1
-                class="max-w-lg text-5xl font-black leading-[0.96] tracking-[-0.05em] text-neutral-950 sm:text-7xl"
-              >
-                {{ name }}
-              </h1>
-              <p class="mt-7 max-w-md text-sm leading-7 text-neutral-600">
-                {{ description }}
-              </p>
-              <a
-                href="#works"
-                aria-label="View works"
-                class="mt-9 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-200 text-2xl transition-all hover:bg-neutral-950 hover:text-white hover:shadow-lg"
-              >
-                <span aria-hidden="true">&#8594;</span>
-              </a>
-            </div>
+            {{ role }}
+          </p>
+          <h1
+            class="hero-copy hero-delay-2 max-w-lg text-5xl font-black leading-[0.96] tracking-[-0.05em] text-neutral-950 sm:text-7xl"
+          >
+            {{ name }}
+          </h1>
+          <p
+            class="hero-copy hero-delay-3 mt-7 max-w-md text-sm leading-7 text-neutral-600"
+          >
+            {{ description }}
+          </p>
+        </div>
 
-            <div
-              class="flex items-center gap-3 text-[10px] font-semibold tracking-[0.14em] text-neutral-400"
+        <div class="hero-copy hero-delay-4 mt-10 flex items-center gap-5">
+          <template v-for="social in socialLinks" :key="social.href">
+            <a
+              :href="social.href"
+              target="_blank"
+              rel="noreferrer"
+              :aria-label="social.label"
+              :title="social.label"
+              class="rounded-md p-1 transition-transform hover:scale-110"
             >
-              <template
-                v-for="(social, index) in socialLinks"
-                :key="social.href"
-              >
-                <span
-                  v-if="index > 0"
-                  aria-hidden="true"
-                  class="text-neutral-300"
-                  >/</span
-                >
-                <a
-                  :href="social.href"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="transition-colors hover:text-neutral-950"
-                >
-                  {{ social.label }}
-                </a>
-              </template>
-            </div>
-          </div>
-
-          <div
-            class="relative order-1 flex min-h-[22rem] items-center justify-center bg-neutral-100/70 p-6 sm:p-10 md:order-2 md:min-h-full"
-          >
-            <div
-              aria-hidden="true"
-              class="absolute left-1/2 top-1/2 -z-0 aspect-square w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-neutral-300 via-neutral-100 to-white blur-xl"
-            ></div>
-            <img
-              :src="profileImage"
-              :alt="`${name} profile`"
-              class="relative z-10 aspect-[3/4] w-full max-w-sm rounded-2xl object-cover grayscale"
-            />
-          </div>
-        </article>
+              <img
+                :src="socialIcon(social.label)"
+                :alt="`${social.label} logo`"
+                class="h-7 w-7"
+              />
+            </a>
+          </template>
+        </div>
       </div>
-    </div>
+
+      <div
+        class="relative order-1 flex min-h-[50vh] items-center justify-center bg-neutral-100 p-4 sm:p-8 md:order-2 md:min-h-screen"
+      >
+        <img
+          :src="profileImage"
+          :alt="`${name} profile`"
+          class="hero-image relative z-10 aspect-[3/4] w-full max-w-lg rounded-2xl object-cover grayscale"
+        />
+      </div>
+    </article>
   </section>
   <section
     id="about"
@@ -189,3 +147,58 @@ const decorativeMarks = [
     </div>
   </section>
 </template>
+
+<style scoped>
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-image-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-copy {
+  animation: hero-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-delay-1 {
+  animation-delay: 80ms;
+}
+
+.hero-delay-2 {
+  animation-delay: 160ms;
+}
+
+.hero-delay-3 {
+  animation-delay: 240ms;
+}
+
+.hero-delay-4 {
+  animation-delay: 320ms;
+}
+
+.hero-image {
+  animation: hero-image-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .hero-image {
+    animation: none;
+  }
+}
+</style>

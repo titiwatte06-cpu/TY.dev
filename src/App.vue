@@ -13,7 +13,6 @@ import TheNavbar from "./components/TheNavbar.vue";
     :social-links="[
       { label: 'GITHUB', href: 'https://github.com/' },
       { label: 'LINKEDIN', href: 'https://www.linkedin.com/' },
-      { label: 'DRIBBBLE', href: 'https://dribbble.com/' },
     ]"
   />
 </template>

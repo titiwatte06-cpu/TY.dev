@@ -20,8 +20,6 @@ function socialIcon(label: string) {
       "https://api.iconify.design/simple-icons/github.svg?color=%23181717",
     linkedin:
       "https://api.iconify.design/simple-icons/linkedin.svg?color=%230A66C2",
-    dribbble:
-      "https://api.iconify.design/simple-icons/dribbble.svg?color=%23EA4C89",
   };
 
   return (
@@ -60,7 +58,7 @@ function socialIcon(label: string) {
           </p>
         </div>
 
-        <div class="hero-copy hero-delay-4 mt-10 flex items-center gap-5">
+        <div class="hero-copy hero-delay-4 mt-14 flex items-center gap-5">
           <template v-for="social in socialLinks" :key="social.href">
             <a
               :href="social.href"
@@ -78,6 +76,15 @@ function socialIcon(label: string) {
             </a>
           </template>
         </div>
+
+        <a
+          href="/cv.pdf"
+          download
+          aria-label="Download CV"
+          class="hero-copy hero-delay-5 mt-7 inline-flex w-fit whitespace-nowrap rounded-md border border-neutral-950 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-neutral-950 transition-colors hover:bg-neutral-950 hover:text-white"
+        >
+          Download CV
+        </a>
       </div>
 
       <div
@@ -189,6 +196,10 @@ function socialIcon(label: string) {
 
 .hero-delay-4 {
   animation-delay: 320ms;
+}
+
+.hero-delay-5 {
+  animation-delay: 400ms;
 }
 
 .hero-image {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HeroSection from "./components/HeroSection.vue";
+import TheFooter from "./components/TheFooter.vue";
 import TheNavbar from "./components/TheNavbar.vue";
 </script>
 
@@ -52,6 +53,7 @@ import TheNavbar from "./components/TheNavbar.vue";
       },
     ]"
   />
+  <TheFooter />
 </template>
 
 <style scoped></style>

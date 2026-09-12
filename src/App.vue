@@ -14,6 +14,43 @@ import TheNavbar from "./components/TheNavbar.vue";
       { label: 'GITHUB', href: 'https://github.com/' },
       { label: 'LINKEDIN', href: 'https://www.linkedin.com/' },
     ]"
+    :projects="[
+      {
+        title: 'Catholic Data',
+        description:
+          'เว็บแสดงตำแหน่งวัดคาทอลิกในกรุงเทพฯ พร้อมเวลามิสซาและระบบแจ้งเตือนแบบเรียลไทม์',
+        techStack: ['React', 'TypeScript', 'Leaflet', 'Node.js', 'MongoDB'],
+        link: 'https://catholic-data.vercel.app',
+        screenshot: '/video/CatholicData.mp4',
+      },
+      {
+        title: 'Blessed Cookie',
+        description:
+          'เว็บขายคุกกี้ สร้างขึ้นระหว่างเรียนรู้ Next.js App Router',
+        techStack: ['Next.js', 'Prisma', 'PostgreSQL', 'Express'],
+        link: '#',
+      },
+    ]"
+    :certifications="[
+      {
+        title: 'Certification 01',
+        issuer: 'Add certificate issuer',
+        image:
+          'https://placehold.co/1200x900/f5f5f5/171717?text=Certificate+01',
+      },
+      {
+        title: 'Certification 02',
+        issuer: 'Add certificate issuer',
+        image:
+          'https://placehold.co/1200x900/e5e5e5/171717?text=Certificate+02',
+      },
+      {
+        title: 'Certification 03',
+        issuer: 'Add certificate issuer',
+        image:
+          'https://placehold.co/1200x900/d4d4d4/171717?text=Certificate+03',
+      },
+    ]"
   />
 </template>
 

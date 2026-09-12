@@ -1,7 +1,25 @@
 <script setup lang="ts">
+import ProjectCard from "./ProjectCard.vue";
+import ProjectCardSkeleton from "./ProjectCardSkeleton.vue";
+import { computed, ref } from "vue";
+
 interface SocialLink {
   label: string;
   href: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  techStack: string[];
+  link: string;
+  screenshot?: string;
+}
+
+interface Certification {
+  title: string;
+  issuer: string;
+  image: string;
 }
 
 interface Props {
@@ -10,9 +28,35 @@ interface Props {
   description: string;
   profileImage: string;
   socialLinks: SocialLink[];
+  projects: Project[];
+  certifications: Certification[];
 }
 
-defineProps<Props>();
+const { certifications } = defineProps<Props>();
+
+const isLoadingProjects = ref(false);
+const certificationIndex = ref(0);
+const currentCertification = computed<Certification>(
+  () =>
+    certifications[certificationIndex.value] ?? {
+      title: "",
+      issuer: "",
+      image: "",
+    },
+);
+
+function showPreviousCertification() {
+  if (certifications.length === 0) return;
+  certificationIndex.value =
+    (certificationIndex.value - 1 + certifications.length) %
+    certifications.length;
+}
+
+function showNextCertification() {
+  if (certifications.length === 0) return;
+  certificationIndex.value =
+    (certificationIndex.value + 1) % certifications.length;
+}
 
 function socialIcon(label: string) {
   const icons: Record<string, string> = {
@@ -150,6 +194,123 @@ function socialIcon(label: string) {
         >
           Explore My Works <span class="ml-4 text-base">&#8595;</span>
         </a>
+      </div>
+    </div>
+  </section>
+  <section
+    id="projects"
+    class="relative isolate overflow-hidden border-t border-neutral-200 bg-white px-5 py-24 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-950 sm:px-8 lg:px-12"
+  >
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-16 max-w-2xl">
+        <p
+          class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400"
+        >
+          Continuous learning journey
+        </p>
+        <h2
+          class="mt-5 text-3xl font-black leading-[0.98] tracking-[-0.04em] text-neutral-950 dark:text-neutral-100 sm:text-6xl"
+        >
+          Featured Projects
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-16">
+        <template v-if="isLoadingProjects">
+          <ProjectCardSkeleton
+            v-for="i in 2"
+            :key="i"
+            :reversed="i % 2 === 0"
+          />
+        </template>
+        <template v-else>
+          <ProjectCard
+            v-for="(project, i) in projects"
+            :key="project.title"
+            v-bind="project"
+            :reversed="i % 2 === 1"
+          />
+        </template>
+      </div>
+    </div>
+  </section>
+  <section
+    id="certificates"
+    class="border-t border-neutral-200 bg-neutral-50 px-5 py-24 text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 sm:px-8 lg:px-12"
+  >
+    <div class="mx-auto max-w-7xl">
+      <div
+        class="flex flex-col justify-between gap-8 border-b border-neutral-200 pb-10 dark:border-neutral-800 sm:flex-row sm:items-end"
+      >
+        <div>
+          <p
+            class="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 dark:text-neutral-400"
+          >
+            Credentials / 03
+          </p>
+          <h2
+            class="mt-5 max-w-xl text-4xl font-black leading-[0.95] tracking-[-0.04em] sm:text-6xl"
+          >
+            Certifications
+          </h2>
+        </div>
+        <div class="flex items-baseline gap-3">
+          <span class="text-6xl font-black leading-none tracking-[-0.06em]">{{
+            certifications.length
+          }}</span>
+          <span
+            class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400"
+            >earned</span
+          >
+        </div>
+      </div>
+
+      <div v-if="certifications.length" class="mt-12">
+        <div
+          class="mx-auto flex max-w-5xl items-center justify-center gap-4 sm:gap-8"
+        >
+          <button
+            type="button"
+            aria-label="Previous certification"
+            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neutral-300 text-xl text-neutral-700 transition-colors hover:bg-neutral-950 hover:text-white dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-100 dark:hover:text-neutral-950"
+            @click="showPreviousCertification"
+          >
+            <span aria-hidden="true">&#8592;</span>
+          </button>
+
+          <article class="w-full max-w-3xl text-center">
+            <div
+              class="overflow-hidden border border-neutral-200 bg-white shadow-[0_12px_35px_rgba(23,23,23,0.06)] dark:border-neutral-800 dark:bg-neutral-950"
+            >
+              <img
+                :key="currentCertification.image"
+                :src="currentCertification.image"
+                :alt="`${currentCertification.title} certificate`"
+                class="aspect-[4/3] w-full object-cover grayscale transition duration-500 hover:grayscale-0"
+              />
+            </div>
+            <h3 class="mt-5 text-base font-bold">
+              {{ currentCertification.title }}
+            </h3>
+            <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+              {{ currentCertification.issuer }}
+            </p>
+            <p
+              class="mt-4 text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-400"
+            >
+              {{ certificationIndex + 1 }} / {{ certifications.length }}
+            </p>
+          </article>
+
+          <button
+            type="button"
+            aria-label="Next certification"
+            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neutral-300 text-xl text-neutral-700 transition-colors hover:bg-neutral-950 hover:text-white dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-100 dark:hover:text-neutral-950"
+            @click="showNextCertification"
+          >
+            <span aria-hidden="true">&#8594;</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>

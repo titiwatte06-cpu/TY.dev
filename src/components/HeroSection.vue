@@ -146,31 +146,8 @@ function socialIcon(label: string) {
     id="about"
     class="relative isolate overflow-hidden border-t border-neutral-200 bg-neutral-50 px-5 py-24 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900 sm:px-8 lg:px-12"
   >
-    <div
-      class="relative z-10 mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.75fr_1.25fr] md:items-center md:gap-16 lg:gap-24"
-    >
-      <div class="flex flex-col items-center justify-center text-center">
-        <p
-          class="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-700 dark:text-neutral-300"
-        >
-          Once a good learner at
-        </p>
-        <a
-          href="https://thailand.generation.org/"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Generation Thailand Website"
-          class="inline-flex transition-opacity hover:opacity-75"
-        >
-          <img
-            class="w-64 sm:w-80"
-            src="https://res.cloudinary.com/s0vscy04/image/upload/q_auto,f_webp/v1784804807/asset-genth_rm7afy.webp"
-            alt="Generation Thailand Logo"
-          />
-        </a>
-      </div>
-
-      <div class="max-w-2xl">
+    <div class="relative z-10 mx-auto max-w-7xl">
+      <div class="mx-auto max-w-4xl text-center">
         <p
           class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400"
         >
@@ -182,18 +159,81 @@ function socialIcon(label: string) {
           Full Stack Developer
         </h2>
         <p
-          class="mt-8 max-w-xl text-base leading-8 text-neutral-600 dark:text-neutral-300"
+          class="mx-auto mt-8 max-w-xl text-center text-base leading-8 text-neutral-600 dark:text-neutral-300"
         >
           A Coding Teacher and Full Stack Developer dedicated to inspiring the
           next generation of innovators and building scalable web solutions.
           Building the web of today, shaping the innovators of tomorrow.
         </p>
-        <a
-          href="#projects"
-          class="mt-10 inline-flex items-center border-b border-neutral-950 pb-2 text-xs font-bold uppercase tracking-[0.18em] text-neutral-950 transition-colors hover:border-neutral-500 hover:text-neutral-500 dark:border-neutral-100 dark:text-neutral-100 dark:hover:border-neutral-400 dark:hover:text-neutral-400"
+      </div>
+
+      <div
+        class="mt-20 grid gap-16 border-t border-neutral-200 pt-12 dark:border-neutral-800 md:grid-cols-2 md:gap-0"
+      >
+        <article
+          class="flex flex-col items-center text-center md:border-r md:border-neutral-200 md:pr-12 dark:md:border-neutral-800"
         >
-          Explore My Works <span class="ml-4 text-base">&#8595;</span>
-        </a>
+          <p
+            class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-700 dark:text-neutral-300"
+          >
+            Education
+          </p>
+          <a
+            href="https://www.ru.ac.th/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Ramkhamhaeng University Website"
+            class="mt-8 transition-opacity hover:opacity-75"
+          >
+            <img
+              class="h-40 w-40 object-contain dark:invert"
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Emblem%20of%20Ramkhamhaeng%20University%2C%20BW.svg"
+              alt="Ramkhamhaeng University Emblem"
+            />
+          </a>
+          <h3
+            class="mt-8 text-2xl font-black leading-tight text-neutral-950 dark:text-neutral-100 sm:text-3xl"
+          >
+            Ramkhamhaeng University
+          </h3>
+          <p
+            class="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400"
+          >
+            Computer Science · Started in 2025
+          </p>
+        </article>
+
+        <article class="flex flex-col items-center text-center md:pl-12">
+          <p
+            class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-700 dark:text-neutral-300"
+          >
+            Bootcamp Experience
+          </p>
+          <a
+            href="https://thailand.generation.org/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Generation Thailand Website"
+            class="mt-8 inline-flex transition-opacity hover:opacity-75"
+          >
+            <img
+              class="h-40 w-64 object-contain sm:w-80"
+              src="https://res.cloudinary.com/s0vscy04/image/upload/q_auto,f_webp/v1784804807/asset-genth_rm7afy.webp"
+              alt="Generation Thailand Logo"
+            />
+          </a>
+          <h3
+            class="mt-8 text-2xl font-black leading-tight text-neutral-950 dark:text-neutral-100 sm:text-3xl"
+          >
+            Generation Thailand
+          </h3>
+          <p
+            class="mt-3 max-w-md text-sm leading-7 text-neutral-600 dark:text-neutral-300"
+          >
+            Completed a coding bootcamp focused on building practical skills for
+            a career in software development.
+          </p>
+        </article>
       </div>
     </div>
   </section>

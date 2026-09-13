@@ -24,7 +24,6 @@ interface Certification {
 
 interface Props {
   name: string;
-  role: string;
   description: string;
   profileImage: string;
   socialLinks: SocialLink[];
@@ -36,6 +35,35 @@ const { certifications } = defineProps<Props>();
 
 const isLoadingProjects = ref(false);
 const certificationIndex = ref(0);
+const techCategories = [
+  {
+    name: "Frontend",
+    technologies: [
+      { name: "HTML", icon: "html5", color: "E34F26" },
+      { name: "CSS", icon: "css3", color: "1572B6" },
+      { name: "JavaScript", icon: "javascript", color: "F7DF1E" },
+      { name: "Vue.js", icon: "vuedotjs", color: "4FC08D" },
+      { name: "Tailwind CSS", icon: "tailwindcss", color: "06B6D4" },
+      { name: "React", icon: "react", color: "61DAFB" },
+    ],
+  },
+  {
+    name: "Backend",
+    technologies: [{ name: "Node.js", icon: "nodedotjs", color: "5FA04E" }],
+  },
+  {
+    name: "Database & Tools",
+    technologies: [
+      { name: "MongoDB", icon: "mongodb", color: "47A248" },
+      { name: "SQL", icon: "database", color: "4479A1" },
+      { name: "Prisma", icon: "prisma", color: "5A67D8" },
+    ],
+  },
+];
+
+function technologyIcon(icon: string, color: string) {
+  return `https://api.iconify.design/simple-icons/${icon}.svg?color=%23${color}`;
+}
 const currentCertification = computed<Certification>(
   () =>
     certifications[certificationIndex.value] ?? {
@@ -76,20 +104,15 @@ function socialIcon(label: string) {
 <template>
   <section
     id="home"
-    class="relative isolate min-h-screen overflow-hidden bg-white text-neutral-950"
+    class="relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-neutral-50 px-8 py-14 text-neutral-950 sm:px-16 sm:py-16 lg:px-24"
   >
     <article
-      class="grid min-h-screen overflow-hidden md:grid-cols-[1.1fr_0.9fr]"
+      class="hero-frame grid w-full max-w-5xl overflow-hidden border border-neutral-300 bg-white shadow-[0_18px_50px_rgba(23,23,23,0.06)] md:min-h-[calc(100vh-12rem)] md:grid-cols-[1.1fr_0.9fr]"
     >
       <div
-        class="order-2 flex min-h-[50vh] flex-col justify-center p-8 sm:p-12 lg:p-20 md:order-1 md:min-h-screen"
+        class="order-2 flex min-h-[50vh] flex-col items-center justify-center p-8 text-center sm:p-12 lg:p-14 md:order-1 md:min-h-[calc(100vh-12rem)]"
       >
         <div class="max-w-xl">
-          <p
-            class="hero-copy hero-delay-1 mb-5 text-xs font-semibold uppercase tracking-[0.26em] text-neutral-400"
-          >
-            {{ role }}
-          </p>
           <h1
             class="hero-copy hero-delay-2 max-w-lg text-5xl font-black leading-[0.96] tracking-[-0.05em] text-neutral-950 sm:text-7xl"
           >
@@ -132,12 +155,12 @@ function socialIcon(label: string) {
       </div>
 
       <div
-        class="relative order-1 flex min-h-[50vh] items-center justify-center bg-neutral-100 p-4 sm:p-8 md:order-2 md:min-h-screen"
+        class="relative order-1 min-h-[50vh] bg-white md:order-2 md:min-h-[calc(100vh-5rem)]"
       >
         <img
           :src="profileImage"
           :alt="`${name} profile`"
-          class="hero-image relative z-10 aspect-[3/4] w-full max-w-lg rounded-2xl object-cover grayscale"
+          class="hero-image h-full min-h-[50vh] w-full object-cover grayscale md:min-h-[calc(100vh-12rem)]"
         />
       </div>
     </article>
@@ -234,6 +257,56 @@ function socialIcon(label: string) {
             a career in software development.
           </p>
         </article>
+      </div>
+    </div>
+  </section>
+  <section
+    id="stack"
+    class="border-t border-neutral-800 bg-neutral-950 px-5 py-20 text-neutral-100 sm:px-8 lg:px-12"
+  >
+    <div
+      class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.75fr_1.25fr] md:items-start md:gap-20"
+    >
+      <div>
+        <p
+          class="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500"
+        >
+          Tools / 02
+        </p>
+        <h2
+          class="mt-5 text-4xl font-black leading-[0.95] tracking-[-0.04em] sm:text-6xl"
+        >
+          Tech Stack
+        </h2>
+      </div>
+      <div
+        class="space-y-8 border-t border-neutral-800 pt-6 md:border-t-0 md:pt-0"
+      >
+        <div
+          v-for="category in techCategories"
+          :key="category.name"
+          class="border-b border-neutral-800 pb-6 last:border-b-0 last:pb-0"
+        >
+          <p
+            class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500"
+          >
+            {{ category.name }}
+          </p>
+          <div class="flex flex-wrap gap-x-7 gap-y-4">
+            <span
+              v-for="technology in category.technologies"
+              :key="technology.name"
+              class="inline-flex items-center gap-2 text-sm font-medium text-neutral-300 transition-colors hover:text-white"
+            >
+              <img
+                :src="technologyIcon(technology.icon, technology.color)"
+                :alt="`${technology.name} logo`"
+                class="h-5 w-5"
+              />
+              {{ technology.name }}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -383,6 +456,21 @@ function socialIcon(label: string) {
   animation: hero-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@keyframes hero-frame-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-frame {
+  animation: hero-frame-in 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .hero-delay-1 {
   animation-delay: 80ms;
 }
@@ -409,7 +497,8 @@ function socialIcon(label: string) {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy,
-  .hero-image {
+  .hero-image,
+  .hero-frame {
     animation: none;
   }
 }

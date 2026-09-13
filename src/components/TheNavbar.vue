@@ -2,20 +2,12 @@
 import { ref } from "vue";
 
 const isMobileMenuOpen = ref(false);
-const isDark = ref(false);
-
-function toggleTheme() {
-  isDark.value = !isDark.value;
-  document.documentElement.classList.toggle("dark", isDark.value);
-}
 
 const navLinks = [
   { href: "#about", label: "About" },
+  { href: "#stack", label: "Stack" },
   { href: "#projects", label: "Projects" },
   { href: "#certificates", label: "Certificates" },
-  { href: "#mini-projects", label: "Mini:p" },
-  { href: "#lab", label: "Lab" },
-  { href: "#saas", label: "SaaS" },
 ];
 </script>
 
@@ -24,10 +16,10 @@ const navLinks = [
     class="sticky top-0 z-50 w-full border-b border-neutral-200/80 bg-neutral-50/90 backdrop-blur-md transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-950/90"
   >
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-      <div class="flex h-16 items-center justify-between">
+      <div class="flex h-20 items-center justify-between">
         <a
           href="#"
-          class="text-2xl font-bold tracking-tight text-neutral-950 dark:text-white"
+          class="mr-auto text-3xl font-bold tracking-tight text-neutral-950 dark:text-white"
         >
           TY<span class="text-neutral-500 dark:text-neutral-400">.dev</span>
         </a>
@@ -49,26 +41,9 @@ const navLinks = [
           >
             <i class="fab fa-github"></i>
           </a>
-
-          <button
-            type="button"
-            aria-label="Toggle Color Theme"
-            class="cursor-pointer rounded-md p-2.5 text-sm text-neutral-500 transition-colors hover:bg-neutral-200/70 dark:text-neutral-400 dark:hover:bg-neutral-800"
-            @click="toggleTheme"
-          >
-            <span class="theme-icon text-xl">◾️</span>
-          </button>
         </div>
 
         <div class="flex items-center gap-2 md:hidden">
-          <button
-            type="button"
-            aria-label="Toggle Color Theme"
-            class="cursor-pointer rounded-md p-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-200/70 dark:text-neutral-300 dark:hover:bg-neutral-800"
-            @click="toggleTheme"
-          >
-            <span class="theme-icon text-xl">◾️</span>
-          </button>
           <button
             type="button"
             aria-label="Toggle Navigation Menu"

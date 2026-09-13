@@ -2,42 +2,34 @@
 import { ref } from "vue";
 
 const isMobileMenuOpen = ref(false);
-const isDark = ref(false);
-
-function toggleTheme() {
-  isDark.value = !isDark.value;
-  document.documentElement.classList.toggle("dark", isDark.value);
-}
 
 const navLinks = [
   { href: "#about", label: "About" },
+  { href: "#stack", label: "Stack" },
   { href: "#projects", label: "Projects" },
   { href: "#certificates", label: "Certificates" },
-  { href: "#mini-projects", label: "Mini:p" },
-  { href: "#lab", label: "Lab" },
-  { href: "#saas", label: "SaaS" },
 ];
 </script>
 
 <template>
   <nav
-    class="sticky top-0 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50 border-b border-gray-100 dark:border-slate-800 transition-all duration-300"
+    class="sticky top-0 z-50 w-full border-b border-neutral-200/80 bg-neutral-50/90 backdrop-blur-md transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-950/90"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <div class="flex h-20 items-center justify-between">
         <a
           href="#"
-          class="text-2xl font-bold text-primary dark:text-white tracking-tight"
+          class="mr-auto text-3xl font-bold tracking-tight text-neutral-950 dark:text-white"
         >
-          TY<span class="text-slate-500 dark:text-slate-400">.dev</span>
+          TY<span class="text-neutral-500 dark:text-neutral-400">.dev</span>
         </a>
 
-        <div class="hidden md:flex space-x-8 items-center">
+        <div class="hidden items-center gap-7 md:flex">
           <a
             v-for="link in navLinks"
             :key="link.href"
             :href="link.href"
-            class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+            class="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white"
             >{{ link.label }}</a
           >
 
@@ -45,34 +37,17 @@ const navLinks = [
             href="https://github.com/titiwatte06-cpu"
             target="_blank"
             aria-label="GitHub Profile"
-            class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors text-xl"
+            class="text-lg text-neutral-500 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white"
           >
             <i class="fab fa-github"></i>
           </a>
-
-          <button
-            type="button"
-            aria-label="Toggle Color Theme"
-            class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-md text-sm p-2.5 cursor-pointer"
-            @click="toggleTheme"
-          >
-            <span class="theme-icon text-xl">◾️</span>
-          </button>
         </div>
 
-        <div class="md:hidden flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Toggle Color Theme"
-            class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-md text-sm p-2 cursor-pointer"
-            @click="toggleTheme"
-          >
-            <span class="theme-icon text-xl">◾️</span>
-          </button>
+        <div class="flex items-center gap-2 md:hidden">
           <button
             type="button"
             aria-label="Toggle Navigation Menu"
-            class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white p-2 cursor-pointer"
+            class="cursor-pointer p-2 text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
           >
             <i class="fas fa-bars text-2xl"></i>
@@ -83,20 +58,20 @@ const navLinks = [
 
     <div
       v-if="isMobileMenuOpen"
-      class="md:hidden bg-white border-b dark:bg-slate-900 border-gray-100 dark:border-slate-800 absolute w-full shadow-lg"
+      class="absolute w-full border-b border-neutral-200 bg-neutral-50 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 md:hidden"
     >
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
         <a
           v-for="link in navLinks"
           :key="link.href"
           :href="link.href"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-slate-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800"
+          class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950 dark:text-neutral-300 dark:hover:bg-neutral-900 dark:hover:text-white"
           >{{ link.label }}</a
         >
         <a
           href="https://github.com/weerayosong"
           target="_blank"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-slate-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800"
+          class="block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950 dark:text-neutral-300 dark:hover:bg-neutral-900 dark:hover:text-white"
         >
           <i class="fab fa-github mr-2"></i> GitHub
         </a>

@@ -24,6 +24,14 @@ import TheNavbar from "./components/TheNavbar.vue";
         screenshot: '/video/CatholicData.mp4',
       },
       {
+        title: 'TheRealEstate',
+        description:
+          'เว็บสำหรับนำเสนอและค้นหาโครงการอสังหาริมทรัพย์ พร้อมข้อมูลรายละเอียดของแต่ละโครงการในรูปแบบที่ใช้งานง่าย',
+        techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+        link: '#',
+        screenshot: '/video/TheRealEstate.mp4',
+      },
+      {
         title: 'Blessed Cookie',
         description:
           'เว็บขายคุกกี้ สร้างขึ้นระหว่างเรียนรู้ Next.js App Router',

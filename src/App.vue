@@ -32,6 +32,14 @@ import TheNavbar from "./components/TheNavbar.vue";
         screenshot: '/video/TheRealEstate.mp4',
       },
       {
+        title: 'Juicy Healthy',
+        description:
+          'โปรเจกต์เว็บไซต์ที่ทำร่วมกับเพื่อน ๆ ใน Bootcamp Generation Thailand เพื่อส่งเสริมการดูแลสุขภาพและการใช้ชีวิตอย่างมีคุณภาพ',
+        techStack: ['React', 'JavaScript', 'CSS', 'Teamwork'],
+        link: '#',
+        screenshot: '/video/JuicyHealthy.mp4',
+      },
+      {
         title: 'Blessed Cookie',
         description:
           'เว็บขายคุกกี้ สร้างขึ้นระหว่างเรียนรู้ Next.js App Router',

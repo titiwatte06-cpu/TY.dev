@@ -160,7 +160,7 @@ function socialIcon(label: string) {
         <img
           :src="profileImage"
           :alt="`${name} profile`"
-          class="hero-image h-full min-h-[50vh] w-full object-cover grayscale md:min-h-[calc(100vh-12rem)]"
+          class="hero-image h-full min-h-[50vh] w-full object-cover object-[55%_center] grayscale md:min-h-[calc(100vh-12rem)]"
         />
       </div>
     </article>

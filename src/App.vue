@@ -9,7 +9,7 @@ import TheNavbar from "./components/TheNavbar.vue";
   <HeroSection
     name="Titiwat Yutavisut"
     description="I create thoughtful digital experiences with a focus on clarity, character, and meaningful details."
-    profile-image="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=900&q=85"
+    profile-image="/image/myprofliepicture.png"
     :social-links="[
       { label: 'GITHUB', href: 'https://github.com/' },
       { label: 'LINKEDIN', href: 'https://www.linkedin.com/' },
